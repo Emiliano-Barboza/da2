@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+        <AssemblyName>NaturalUruguayGateway.NaturalUruguayEngine</AssemblyName>
+        <RootNamespace>NaturalUruguayGateway.NaturalUruguayEngine</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\HelperInterface\HelperInterface.csproj" />
+      <ProjectReference Include="..\NaturalUruguayDataAccessInterface\NaturalUruguayDataAccessInterface.csproj" />
+      <ProjectReference Include="..\NaturalUruguayEngineInterface\NaturalUruguayEngineInterface.csproj" />
+    </ItemGroup>
+
+</Project>

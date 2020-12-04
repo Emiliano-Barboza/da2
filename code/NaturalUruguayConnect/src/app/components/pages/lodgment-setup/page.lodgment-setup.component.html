@@ -1,0 +1,82 @@
+<app-body-content class="lodgment-setup-container">
+  <slot-header>
+    <app-header-bar [justifyContent]="justifyContentHeader">
+      <a [routerLink]="[goBackUrl]">
+        <div [textContent]="goBackUrlName"></div>
+      </a>
+    </app-header-bar>
+  </slot-header>
+  <slot-content>
+    <mat-vertical-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="informationData">
+        <ng-template matStepLabel>
+          <mat-label [textContent]="informationLabel"></mat-label>
+        </ng-template>
+        <form [formGroup]="informationData">
+          <mat-form-field appearance="none" class="dummy-helper">
+            <mat-icon matPrefix>location_on</mat-icon>
+            <app-select
+              [searchPlaceholderText]="selectSpotPlaceholderText"
+              [filteredOptions]="filteredSpots"
+              [searchSource]="searchSource"
+              [searchButtonVisible]="false"
+              (selectedOptionEvent)="selectedSpot($event)"></app-select>
+            <input matInput [placeholder]="namePlaceholderLabel" formControlName="spotId" required>
+            <mat-error [textContent]="invalidNameLabel"></mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label [textContent]="nameLabel"></mat-label>
+            <mat-icon matPrefix>location_city</mat-icon>
+            <input matInput [placeholder]="namePlaceholderLabel" formControlName="name" required>
+            <mat-error [textContent]="invalidNameLabel"></mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label [textContent]="descriptionLabel"></mat-label>
+            <mat-icon matPrefix>description</mat-icon>
+            <textarea matInput formControlName="description" [placeholder]="descriptionPlaceholderLabel" [mat-autosize]="true" required></textarea>
+            <mat-error [textContent]="invalidDescriptionLabel"></mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label  [textContent]="addressLabel"></mat-label>
+            <mat-icon matPrefix>add_location_alt</mat-icon>
+            <input matInput [placeholder]="addressPlaceholderLabel" formControlName="address" required>
+            <mat-error [textContent]="invalidAddressLabel"></mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label [textContent]="phoneNumberLabel"></mat-label>
+            <mat-icon matPrefix>phone</mat-icon>
+            <input matInput type="number" [placeholder]="phoneNumberPlaceholderLabel" formControlName="phoneNumber" required>
+            <mat-error [textContent]="invalidPhoneNumberLabel"></mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label  [textContent]="contactInformationLabel"></mat-label>
+            <mat-icon matPrefix>contacts</mat-icon>
+            <input matInput [placeholder]="contactInformationPlaceholderLabel" formControlName="contactInformation" required>
+            <mat-error [textContent]="invalidContactInformationLabel"></mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label  [textContent]="amountOfStarsLabel"></mat-label>
+            <mat-icon matPrefix>star</mat-icon>
+            <input matInput type="number" maxlength="1" min="1" max="5" [placeholder]="amountOfStarsPlaceholderLabel" formControlName="amountOfStars" required>
+            <mat-error [textContent]="invalidAmountOfStarsLabel"></mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label  [textContent]="priceLabel"></mat-label>
+            <mat-icon matPrefix>attach_money</mat-icon>
+            <input matInput type="number" [placeholder]="pricePlaceholderLabel" formControlName="price" required>
+            <mat-error [textContent]="invalidPriceLabel"></mat-error>
+          </mat-form-field>
+          <mat-slide-toggle color="primary" formControlName="isActive" (change)="isActiveToggle($event)">{{isActiveLabel}}</mat-slide-toggle>
+          <mat-divider></mat-divider>
+          <button mat-button [class]="{success: informationData.enabled}" (click)="createLodgment()" [disabled]="informationData.disabled" matStepperNext [textContent]="createLodgmentLabel"></button>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="imagesData" [optional]="isOptional">
+        <ng-template matStepLabel>
+          <mat-label [textContent]="imagesLabel"></mat-label>
+        </ng-template>
+        <app-dashboard-upload *ngIf="lodgmentImagesUrl" [token]="token" [uploadUrl]="lodgmentImagesUrl"></app-dashboard-upload>
+      </mat-step>
+    </mat-vertical-stepper>
+  </slot-content>
+</app-body-content>

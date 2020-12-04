@@ -1,0 +1,14 @@
+::ng-deep .lodgments-in-spots-container  .body-content-container > .body-content-body {
+  height: calc(100% - 240px);
+  overflow: auto;
+}
+::ng-deep app-booking-options {
+  width: 100%;
+}
+
+mat-form-field {
+  height: 50px;
+}
+.center-content > button {
+ margin: 0 10px;
+}

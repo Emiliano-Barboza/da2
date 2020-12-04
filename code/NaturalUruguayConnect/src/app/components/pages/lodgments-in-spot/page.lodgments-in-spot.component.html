@@ -1,0 +1,37 @@
+<app-pagination [filterByPlaceholder]="filterByPlaceholder"
+                [totalItems]="total"
+                [pageSize]="pageSize"
+                (pageEvent)="pageChangeEvent($event)"
+                (filterBy)="filterByEvent($event)"
+                class="lodgments-in-spots-container">
+  <slot-header>
+    <app-header-bar>
+      <app-booking-options [buttonLabel]="searchText" (buttonEvent)="search()"></app-booking-options>
+    </app-header-bar>
+  </slot-header>
+  <slot-content>
+    <div>
+      <h1 [textContent]="spotName"></h1>
+      <a [routerLink]="[goBackUrl]">
+        <div [textContent]="regionName"></div>
+      </a>
+    </div>
+    <div class="grid-container">
+      <a *ngFor="let option of filteredLodgments | async" (click)="navigateToLodgment(option)">
+        <mat-card>
+          <mat-card-content>
+            <img mat-card-image src="{{option.images[0]}}">
+          </mat-card-content>
+          <div>
+            <mat-icon>star</mat-icon>
+            <span>{{option.amountOfStars}}</span>
+          </div>
+          <mat-card-title>{{option.name}}</mat-card-title>
+          <div class="overflow-ellipsis">{{option.description}}</div>
+          <div>$U {{option.price}} por noche</div>
+          <div>Total: $U{{option.totalPrice}}</div>
+        </mat-card>
+      </a>
+    </div>
+  </slot-content>
+</app-pagination>

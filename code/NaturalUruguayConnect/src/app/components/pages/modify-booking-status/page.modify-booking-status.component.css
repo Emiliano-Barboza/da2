@@ -1,0 +1,15 @@
+.modify-booking-status-container mat-card {
+  height: auto;
+}
+
+.modify-booking-status-container mat-form-field {
+  width: 100%;
+}
+
+.modify-booking-status-container mat-icon {
+  margin-right: 5px;
+}
+
+.modify-booking-status-container mat-error {
+  margin-left: 30px;
+}

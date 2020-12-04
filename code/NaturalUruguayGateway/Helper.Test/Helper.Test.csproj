@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+
+        <AssemblyName>NaturalUruguayGateway.Helper.Test</AssemblyName>
+
+        <RootNamespace>NaturalUruguayGateway.Helper.Test</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoFixture" Version="$(AutoFixtureVersion)" />
+        <PackageReference Include="AutoFixture.AutoMoq" Version="$(AutoFixtureVersion)" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackageVersion)" />
+        <PackageReference Include="MSTest.TestAdapter" Version="$(MSTestPackageVersion)" />
+        <PackageReference Include="MSTest.TestFramework" Version="$(MSTestPackageVersion)" />
+        <PackageReference Include="coverlet.collector" Version="$(CoverletCollectorVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Helper\Helper.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="appsettings.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+</Project>

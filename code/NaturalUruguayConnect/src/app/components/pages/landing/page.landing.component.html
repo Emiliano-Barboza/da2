@@ -1,0 +1,39 @@
+<app-body-content class="landing-container">
+  <slot-header>
+    <mat-toolbar color="primary">
+      <button mat-icon-button  (click)="toggleSidebar()" class="example-icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <a href="\" class="logo">
+        <mat-icon svgIcon="uruguay_natural"></mat-icon>
+      </a>
+      <a href="\" class="logo">
+        <span>Uruguay Natural</span>
+      </a>
+    </mat-toolbar>
+  </slot-header>
+  <slot-content>
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+        <mat-list>
+          <mat-list-item *ngFor="let option of sideNavOptions | async">
+            <mat-icon mat-list-icon [textContent]="option.icon"></mat-icon>
+            <div mat-line [routerLink]="[option.link]" [textContent]="option.name"></div>
+          </mat-list-item>
+          <mat-list-item *ngIf="!isLogged">
+            <mat-icon mat-list-icon>login</mat-icon>
+            <div mat-line [routerLink]="['/login']" [textContent]="loginLabel"></div>
+          </mat-list-item>
+          <mat-list-item *ngIf="isLogged">
+            <mat-icon mat-list-icon>exit_to_app</mat-icon>
+            <div mat-line (click)="logout()" [textContent]="logoutLabel"></div>
+          </mat-list-item>
+        </mat-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </slot-content>
+
+</app-body-content>

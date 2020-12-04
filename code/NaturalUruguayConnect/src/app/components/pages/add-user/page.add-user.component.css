@@ -1,0 +1,12 @@
+::ng-deep .create-user-container .body-content-container > .body-content-body {
+  height: calc(100% - 130px);
+  overflow: auto;
+}
+
+.create-user-container mat-card {
+  height: auto;
+}
+
+.create-user-container mat-form-field {
+  width: 100%;
+}

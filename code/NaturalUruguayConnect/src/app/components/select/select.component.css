@@ -1,0 +1,7 @@
+.select-container {
+  display: inherit;
+  width: 320px;
+}
+.select-container mat-form-field {
+  min-width: 280px;
+}

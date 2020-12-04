@@ -1,0 +1,33 @@
+::ng-deep .spot-setup-container .body-content-container > .body-content-body {
+  height: calc(100% - 130px);
+  overflow: auto;
+}
+
+::ng-deep .spot-setup-container .dummy-helper > div {
+  padding-bottom: 0;
+}
+
+::ng-deep .spot-setup-container form > mat-form-field > div {
+  width: 310px
+}
+
+.spot-setup-container mat-form-field {
+  width: 100%;
+}
+
+.spot-setup-container mat-icon {
+  margin-right: 5px;
+}
+
+.spot-setup-container mat-divider {
+  margin: 20px 0;
+}
+
+.spot-setup-container .dummy-helper .mat-form-field-wrapper {
+  padding: 0;
+}
+
+.spot-setup-container .dummy-helper input {
+  display: none;
+}
+

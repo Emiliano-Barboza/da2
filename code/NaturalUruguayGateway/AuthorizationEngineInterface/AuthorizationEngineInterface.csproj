@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+        <RootNamespace>NaturalUruguayGateway.AuthorizationEngineInterface</RootNamespace>
+        <AssemblyName>NaturalUruguayGateway.AuthorizationEngineInterface</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+
+</Project>

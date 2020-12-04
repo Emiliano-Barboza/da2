@@ -1,0 +1,32 @@
+<div id='options-component' class="center-content">
+  <mat-form-field appearance="fill">
+    <mat-label [textContent]="datesText"></mat-label>
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker" disabled [dateFilter]="datePickerFilterDates">
+      <input matStartDate formControlName="checkIn" [placeholder]="checkInText">
+      <input matEndDate formControlName="checkOut" [placeholder]="checkOutText">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
+  </mat-form-field>
+  <button mat-raised-button [mat-menu-trigger-for]="menu" [textContent]="menuText"></button>
+  <mat-menu #menu="matMenu">
+    <div class="frame">
+      <app-counter [placeholderText]="placeHolderAdults"
+                   [hintText]="hintAdults"
+                   (count)="counterChanged(placeHolderAdults, $event)"></app-counter>
+      <mat-divider></mat-divider>
+      <app-counter [placeholderText]="placeHolderUnderAge"
+                   [hintText]="hintUnderAge"
+                   (count)="counterChanged(placeHolderUnderAge, $event)"></app-counter>
+      <mat-divider></mat-divider>
+      <app-counter [placeholderText]="placeHolderBabies"
+                   [hintText]="hintBabies"
+                   (count)="counterChanged(placeHolderBabies, $event)"></app-counter>
+      <mat-divider></mat-divider>
+      <app-counter [placeholderText]="placeHolderVeterans"
+                   [hintText]="hintVeterans"
+                   (count)="counterChanged(placeHolderVeterans, $event)"></app-counter>
+    </div>
+  </mat-menu>
+  <button mat-raised-button color="primary" [textContent]="buttonLabel" (click)="actionHandler()"></button>
+</div>

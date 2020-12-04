@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+
+        <AssemblyName>NaturalUruguayGateway.NaturalUruguayEngine.Test</AssemblyName>
+
+        <RootNamespace>NaturalUruguayGateway.NaturalUruguayEngine.Test</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoFixture" Version="$(AutoFixtureVersion)" />
+        <PackageReference Include="AutoFixture.AutoMoq" Version="$(AutoFixtureVersion)" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackageVersion)" />
+        <PackageReference Include="MSTest.TestAdapter" Version="$(MSTestPackageVersion)" />
+        <PackageReference Include="MSTest.TestFramework" Version="$(MSTestPackageVersion)" />
+        <PackageReference Include="coverlet.collector" Version="$(CoverletCollectorVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+      <ProjectReference Include="..\NaturalUruguayDataAccessInterface\NaturalUruguayDataAccessInterface.csproj" />
+      <ProjectReference Include="..\NaturalUruguayEngine\NaturalUruguayEngine.csproj" />
+    </ItemGroup>
+
+</Project>

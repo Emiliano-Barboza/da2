@@ -1,0 +1,16 @@
+<app-body-content>
+  <slot-header>
+    <ng-content select="slot-header"></ng-content>
+  </slot-header>
+  <slot-content class="split-container">
+    <div class="left-content">
+      <ng-content select="slot-left-content"></ng-content>
+    </div>
+    <div class="right-content">
+      <ng-content select="slot-right-content"></ng-content>
+    </div>
+  </slot-content>
+  <slot-footer>
+    <ng-content select="slot-footer"></ng-content>
+  </slot-footer>
+</app-body-content>

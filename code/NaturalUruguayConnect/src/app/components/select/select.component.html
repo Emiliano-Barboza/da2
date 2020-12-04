@@ -1,0 +1,23 @@
+<div class="select-container">
+  <button *ngIf="searchButtonVisible" mat-icon-button (click)="openAutocompletePanel($event, trigger)">
+    <mat-icon>search</mat-icon>
+  </button>
+  <mat-form-field [appearance]="appearance">
+    <input type="text"
+           [placeholder]="searchPlaceholderText"
+           aria-label="Number"
+           matInput
+           #autocompleteInput
+           #trigger="matAutocompleteTrigger"
+           [formControl]="searchControl"
+           [matAutocomplete]="auto"
+           (click)="openAutocompletePanel($event, trigger)">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async"
+                  [value]="option.name"
+                  (click)="selectedOption(option)">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

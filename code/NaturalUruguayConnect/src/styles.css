@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body {
+  color: #656565;
+  font-family: Roboto,Helvetica Neue,sans-serif;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.wrapper {
+  height: 100%;
+}
+
+html {
+  padding: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #484848;
+  font-weight: 400;
+  text-overflow: ellipsis;
+}
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+}
+
+.container-split {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-wrapper {
+  padding: 50px 200px;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.frame {
+  padding: 10px;
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+}
+
+.grid-container a {
+  cursor: pointer;
+  margin: 10px;
+}
+
+mat-card {
+  padding: 0 16px 16px;
+  height: 315px;
+  width: 290px;
+}
+
+mat-card img {
+  object-fit: cover; /*this makes the image in src fit to the size specified below*/
+  padding: 20px 5px 5px 5px;
+  width: calc(100% + 24px) !important;
+  height: 192px;
+}
+mat-card-content {
+  margin: 0 !important;
+}
+
+.overflow-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.success {
+  background-color: #34A853;
+  color: #f5f5f5;
+  opacity: 0.9;
+}
+
+.warning {
+  background-color: #FBBC04;
+  color: #f5f5f5;
+  opacity: 0.9;
+}
+
+.danger {
+  background-color: #EA4335;
+  color: #f5f5f5;
+  opacity: 0.9;
+}
+
+mat-icon {
+  margin-right: 5px;
+}
+
+.logo {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 5px;
+  letter-spacing: 2px;
+  font-size: 25px;
+}

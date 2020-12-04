@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+        <RootNamespace>NaturalUruguayGateway.AuthorizationEngine</RootNamespace>
+        <AssemblyName>NaturalUruguayGateway.AuthorizationEngine</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AuthorizationDataAccessInterface\AuthorizationDataAccessInterface.csproj" />
+      <ProjectReference Include="..\AuthorizationEngineInterface\AuthorizationEngineInterface.csproj" />
+      <ProjectReference Include="..\HelperInterface\HelperInterface.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+        <HintPath>..\WebApi\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

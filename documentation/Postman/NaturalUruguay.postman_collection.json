@@ -1,0 +1,1968 @@
+{
+	"info": {
+		"_postman_id": "9aa5acd7-0316-41ad-8025-7a72bfdc4a55",
+		"name": "NaturalUruguay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin Actions",
+			"item": [
+				{
+					"name": "Sessions",
+					"item": [
+						{
+							"name": "Login - as admin in DB - Returns token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0558348f-cecb-4bc5-a977-94b96403d9db",
+										"exec": [
+											"var response = pm.response.json()",
+											"pm.environment.set(\"invalidToken\", response.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"mick@jager.com\",\n    \"password\": \"hakunamatata\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}sessions",
+									"host": [
+										"{{base_url}}sessions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login - as super admin in DB - Returns token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3989c25d-c74a-45c7-bff6-26ce7a4d6fa3",
+										"exec": [
+											"var response = pm.response.json()",
+											"pm.environment.set(\"token\", response.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"super@admin.com\",\n    \"password\": \"hakunamatata\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}sessions",
+									"host": [
+										"{{base_url}}sessions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login - user not exists in DB - Returns Invalid credentials",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"no@in.database\",\n    \"password\": \"error\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}sessions",
+									"host": [
+										"{{base_url}}sessions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout - Returns Redirect",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}sessions",
+									"host": [
+										"{{base_url}}sessions"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Paging users",
+							"item": [
+								{
+									"name": "Get users - pagination dafault values",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users",
+											"host": [
+												"{{base_url}}users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get users - pagination FilterBy",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users?filterBy=a&limit=1",
+											"host": [
+												"{{base_url}}users"
+											],
+											"query": [
+												{
+													"key": "filterBy",
+													"value": "a"
+												},
+												{
+													"key": "limit",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get users - pagination Sort ascending",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users?direction=asc",
+											"host": [
+												"{{base_url}}users"
+											],
+											"query": [
+												{
+													"key": "direction",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get users - pagination Order",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users?order=email",
+											"host": [
+												"{{base_url}}users"
+											],
+											"query": [
+												{
+													"key": "order",
+													"value": "email"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get users - pagination Offset",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users?offset=3",
+											"host": [
+												"{{base_url}}users"
+											],
+											"query": [
+												{
+													"key": "offset",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get users - pagination Limit",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users?limit=3",
+											"host": [
+												"{{base_url}}users"
+											],
+											"query": [
+												{
+													"key": "limit",
+													"value": "3"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get users - pagination wrong Order value - Returns property does not exixts",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}users?order=noAttribute",
+											"host": [
+												"{{base_url}}users"
+											],
+											"query": [
+												{
+													"key": "order",
+													"value": "noAttribute"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Add new admin - success",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users",
+									"host": [
+										"{{base_url}}users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user admin - success",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Just update me\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users/3",
+									"host": [
+										"{{base_url}}users"
+									],
+									"path": [
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add new admin - user already exists - Return email exists",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users",
+									"host": [
+										"{{base_url}}users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete admin - user has not access - Returns Access Token Required",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users/2",
+									"host": [
+										"{{base_url}}users"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete admin - user has not access - Returns Invalid Schema",
+							"request": {
+								"auth": {
+									"type": "basic"
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users/2",
+									"host": [
+										"{{base_url}}users"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete admin - user has not access - Returns Invalid Token",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "invalid token",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users/2",
+									"host": [
+										"{{base_url}}users"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete admin - user has not access - Returns Unauthorized",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{invalidToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users/2",
+									"host": [
+										"{{base_url}}users"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete admin - user has access - Returns deleted user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users/2",
+									"host": [
+										"{{base_url}}users"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete admin - user has access - Returns user not exists",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users/200000000",
+									"host": [
+										"{{base_url}}users"
+									],
+									"path": [
+										"200000000"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Spots",
+					"item": [
+						{
+							"name": "Lodgments",
+							"item": [
+								{
+									"name": "Add Lodgment - Success",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Conrad 53\",\n    \"amountOfStars\": 5,\n    \"address\": \"Some place in Pta del este\",\n    \"images\": [\"someUrl\"],\n    \"price\": 123,\n    \"description\": \"loremipsum\",\n    \"capacity\": 1230,\n    \"phoneNumber\": \"555-3232-444\",\n    \"contactInformation\": \"Call cacho castaña\",\n    \"spotId\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}spots/1/lodgments",
+											"host": [
+												"{{base_url}}spots"
+											],
+											"path": [
+												"1",
+												"lodgments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Lodgment - Success",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}spots/1/lodgments/1",
+											"host": [
+												"{{base_url}}spots"
+											],
+											"path": [
+												"1",
+												"lodgments",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Lodgment - Lodgment not exists",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}spots/100/lodgments/3",
+											"host": [
+												"{{base_url}}spots"
+											],
+											"path": [
+												"100",
+												"lodgments",
+												"3"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add Lodgment - Without Tourist spot - Returns Tourist point not exists",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Conrad\",\n    \"amountOfStars\": 5,\n    \"address\": \"Some place in Pta del este\",\n    \"images\": [\"someUrl\"],\n    \"price\": 123,\n    \"description\": \"loremipsum\",\n    \"capacity\": 1230,\n    \"phoneNumber\": \"555-3232-444\",\n    \"contactInformation\": \"Call cacho castaña\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}spots/1/lodgments",
+											"host": [
+												"{{base_url}}spots"
+											],
+											"path": [
+												"1",
+												"lodgments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add Lodgment - Lodgment already exists",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Conrad\",\n    \"amountOfStars\": 5,\n    \"address\": \"Some place in Pta del este\",\n    \"images\": [\"someUrl\"],\n    \"price\": 123,\n    \"description\": \"loremipsum\",\n    \"capacity\": 1230,\n    \"phoneNumber\": \"555-3232-444\"\n    \"contactInformation\": \"Call cacho castaña\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}spots/1/lodgments",
+											"host": [
+												"{{base_url}}spots"
+											],
+											"path": [
+												"1",
+												"lodgments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add Lodgment - Data required",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}spots/1/lodgments",
+											"host": [
+												"{{base_url}}spots"
+											],
+											"path": [
+												"1",
+												"lodgments"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Add spot - Success",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Name\": \"Pta Colorada\",\n    \"Thumbnail\": \"Some url here\",\n    \"Description\": \"loremipsum\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}regions/1/spots",
+									"host": [
+										"{{base_url}}regions"
+									],
+									"path": [
+										"1",
+										"spots"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add spot - Wrong category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Name\": \"Pta Plateada\",\n    \"Thumbnail\": \"Some url here\",\n    \"Description\": \"loremipsum\",\n    \"CategorySpots\": [\n        {\n            \"CategoryId\": 10\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}regions/1/spots",
+									"host": [
+										"{{base_url}}regions"
+									],
+									"path": [
+										"1",
+										"spots"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add spot - Already exists",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Name\": \"Pta Colorada\",\n    \"Thumbnail\": \"Some url here\",\n    \"Description\": \"loremipsum\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}regions/1/spots",
+									"host": [
+										"{{base_url}}regions"
+									],
+									"path": [
+										"1",
+										"spots"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add spot - Region not exists",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Name\": \"Pta Colorada\",\n    \"Thumbnail\": \"Some url here\",\n    \"Description\": \"loremipsum\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}regions/14/spots",
+									"host": [
+										"{{base_url}}regions"
+									],
+									"path": [
+										"14",
+										"spots"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add spot - Data required",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Name\": \"\",\n    \"Thumbnail\": \"\",\n    \"Description\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}regions/1/spots",
+									"host": [
+										"{{base_url}}regions"
+									],
+									"path": [
+										"1",
+										"spots"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add spot - Access denied",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"Name\": \"Pta Colorada\",\n    \"Thumbnail\": \"Some url here\",\n    \"Description\": \"loremipsum\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}regions/1/spots",
+									"host": [
+										"{{base_url}}regions"
+									],
+									"path": [
+										"1",
+										"spots"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Lodgments",
+					"item": [
+						{
+							"name": "Activate lodgment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}lodgments/3/activate",
+									"host": [
+										"{{base_url}}lodgments"
+									],
+									"path": [
+										"3",
+										"activate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Activate lodgment Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}lodgments/3/deactivate",
+									"host": [
+										"{{base_url}}lodgments"
+									],
+									"path": [
+										"3",
+										"deactivate"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Bookings",
+					"item": [
+						{
+							"name": "Update Booking Status - Success",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Rechazada\",\n    \"description\": \"some description here\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}bookings/1/status",
+									"host": [
+										"{{base_url}}bookings"
+									],
+									"path": [
+										"1",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Booking Status - Booking not exists",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}bookings/100/status",
+									"host": [
+										"{{base_url}}bookings"
+									],
+									"path": [
+										"100",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Booking Status - Booking Status not exists",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"No existe booking status\",\n    \"description\": \"some description here\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}bookings/1/status",
+									"host": [
+										"{{base_url}}bookings"
+									],
+									"path": [
+										"1",
+										"status"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Versions",
+					"item": [
+						{
+							"name": "Get users - With version in header",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\",\n    \"password\": \"pass\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users",
+									"host": [
+										"{{base_url}}users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get users - With wrong version in header",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\",\n    \"password\": \"pass\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users",
+									"host": [
+										"{{base_url}}users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get users - With version as a query params",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\",\n    \"password\": \"pass\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users?api-version=1.0",
+									"host": [
+										"{{base_url}}users"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "1.0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get users - With wrong version as a query params",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New 3 Cacho castaña\",\n    \"email\": \"new3cacho@castaña.com\",\n    \"password\": \"pass\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}users?api-version=5.0",
+									"host": [
+										"{{base_url}}users"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "5.0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dc8011e0-75a6-4f86-a353-c098041e8614",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "66b768c0-6f5d-4e7c-9fad-8381ee6e6ac3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tourist Actions",
+			"item": [
+				{
+					"name": "Spots",
+					"item": [
+						{
+							"name": "Get Lodgments by spot - Success",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}spots/2/lodgments?checkIn=637380409780244474&checkOut=637384730320262778&amountOfAdults=3&amountOfUnderAge=2&amountOfBabies=4",
+									"host": [
+										"{{base_url}}spots"
+									],
+									"path": [
+										"2",
+										"lodgments"
+									],
+									"query": [
+										{
+											"key": "checkIn",
+											"value": "637380409780244474"
+										},
+										{
+											"key": "checkOut",
+											"value": "637384730320262778"
+										},
+										{
+											"key": "amountOfAdults",
+											"value": "3"
+										},
+										{
+											"key": "amountOfUnderAge",
+											"value": "2"
+										},
+										{
+											"key": "amountOfBabies",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Lodgments by spot - Whitout CheckIn/CheckOut",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}spots/2/lodgments?amountOfAdults=3&amountOfBabies=4",
+									"host": [
+										"{{base_url}}spots"
+									],
+									"path": [
+										"2",
+										"lodgments"
+									],
+									"query": [
+										{
+											"key": "amountOfAdults",
+											"value": "3"
+										},
+										{
+											"key": "amountOfBabies",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Lodgments by spot - checkOut earlier than checkIn",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}spots/2/lodgments?checkIn=637384730320262778&checkOut=637380409780244474&amountOfAdults=3&amountOfBabies=4",
+									"host": [
+										"{{base_url}}spots"
+									],
+									"path": [
+										"2",
+										"lodgments"
+									],
+									"query": [
+										{
+											"key": "checkIn",
+											"value": "637384730320262778"
+										},
+										{
+											"key": "checkOut",
+											"value": "637380409780244474"
+										},
+										{
+											"key": "amountOfAdults",
+											"value": "3"
+										},
+										{
+											"key": "amountOfBabies",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Lodgments by spot - Whitout amountOfAdults",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}spots/2/lodgments?checkIn=637380409780244474&checkOut=637384730320262778&amountOfUnderAge=2&amountOfBabies=4",
+									"host": [
+										"{{base_url}}spots"
+									],
+									"path": [
+										"2",
+										"lodgments"
+									],
+									"query": [
+										{
+											"key": "checkIn",
+											"value": "637380409780244474"
+										},
+										{
+											"key": "checkOut",
+											"value": "637384730320262778"
+										},
+										{
+											"key": "amountOfUnderAge",
+											"value": "2"
+										},
+										{
+											"key": "amountOfBabies",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Regions",
+					"item": [
+						{
+							"name": "Get Regions - Success",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}regions",
+									"host": [
+										"{{base_url}}regions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Regions - With parameters",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}regions?limit=2",
+									"host": [
+										"{{base_url}}regions"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Spots by Region - Success",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}regions/1/spots",
+									"host": [
+										"{{base_url}}regions"
+									],
+									"path": [
+										"1",
+										"spots"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Spots by Region - Using filters",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}regions/1/spots?filterBy=nia",
+									"host": [
+										"{{base_url}}regions"
+									],
+									"path": [
+										"1",
+										"spots"
+									],
+									"query": [
+										{
+											"key": "filterBy",
+											"value": "nia"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Lodgments",
+					"item": [
+						{
+							"name": "Bookings",
+							"item": [
+								{
+									"name": "Add Booking - Success",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "85792d0a-c9f5-4045-8f09-f17b4471281d",
+												"exec": [
+													"var response = pm.response.json()",
+													"pm.environment.set(\"bookingConfirmationCode\", response.confirmationCode);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Elcan\",\n    \"lastName\": \"Sado\",\n    \"email\": \"elcansado@gmail.com\",\n    \"lodgmentOptions\": {\n        \"checkIn\": 637380409780244474,\n        \"checkOut\": 637384730320262778,\n        \"AmountOfAdults\": 3,\n        \"AmountOfBabies\": 2\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}lodgments/1/bookings",
+											"host": [
+												"{{base_url}}lodgments"
+											],
+											"path": [
+												"1",
+												"bookings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add Booking - Whitout json params",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"lastName\": \"Sado\",\n    \"lodgmentOptions\": {\n        \"checkIn\": 637380409780244474,\n        \"checkOut\": 637384730320262778,\n        \"AmountOfAdults\": 3,\n        \"AmountOfBabies\": 2\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}lodgments/1/bookings",
+											"host": [
+												"{{base_url}}lodgments"
+											],
+											"path": [
+												"1",
+												"bookings"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Bookings",
+					"item": [
+						{
+							"name": "Get Booking Status - Success",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}bookings/{{bookingConfirmationCode}}/status",
+									"host": [
+										"{{base_url}}bookings"
+									],
+									"path": [
+										"{{bookingConfirmationCode}}",
+										"status"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

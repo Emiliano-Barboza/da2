@@ -1,0 +1,17 @@
+<app-center-content class="regions-container">
+  <app-body-content>
+    <slot-header>
+      <div class="main-image">
+        <img src="assets/images/uruguay-natural-main.png">
+      </div>
+    </slot-header>
+    <slot-content>
+      <app-select-regions></app-select-regions>
+    </slot-content>
+    <slot-footer>
+      <div class="center-content">
+        <button mat-raised-button color="primary" [textContent]="searchText" (click)="openAutocompletePanel($event)"></button>
+      </div>
+    </slot-footer>
+  </app-body-content>
+</app-center-content>

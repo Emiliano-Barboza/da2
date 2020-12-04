@@ -1,0 +1,58 @@
+<app-body-content class="modify-booking-status-container">
+  <slot-header>
+    <app-header-bar [justifyContent]="justifyContentHeader">
+      <a [routerLink]="[goBackUrl]">
+        <div [textContent]="goBackUrlName"></div>
+      </a>
+      <button mat-raised-button color="primary" [textContent]="updateStatusLabel" [disabled]="form.invalid" (click)="updateBookingStatus()"></button>
+    </app-header-bar>
+  </slot-header>
+  <slot-content>
+    <app-center-content>
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="form" (ngSubmit)="updateBookingStatus()">
+            <mat-form-field appearance="none">
+              <mat-label [textContent]="fullNameLabel"></mat-label>
+              <mat-icon matPrefix>contacts</mat-icon>
+              <input matInput [readonly]="true" [value]="booking.name + ' ' + booking.lastName">
+            </mat-form-field>
+            <mat-form-field appearance="none">
+              <mat-label  [textContent]="emailLabel"></mat-label>
+              <mat-icon matPrefix>email</mat-icon>
+              <input matInput [readonly]="true" [value]="booking.email">
+            </mat-form-field>
+            <mat-form-field appearance="none">
+              <mat-label  [textContent]="confirmationCodeLabel"></mat-label>
+              <mat-icon matPrefix>qr_code</mat-icon>
+              <input matInput [readonly]="true" [value]="booking.confirmationCode">
+            </mat-form-field>
+            <mat-form-field appearance="none">
+              <mat-label [textContent]="statusLabel"></mat-label>
+              <mat-icon matPrefix>sync</mat-icon>
+              <mat-select formControlName="bookingStatusName">
+                <mat-option [value]="option.name" *ngFor="let option of bookingStatusOptions | async">{{ option.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="none">
+              <mat-label  [textContent]="statusDescriptionLabel"></mat-label>
+              <mat-icon matPrefix>pencil</mat-icon>
+              <textarea matInput formControlName="bookingStatusDescription" [mat-autosize]="true"></textarea>
+              <mat-error [textContent]="invalidStatusDescriptionLabel"></mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="none">
+              <mat-label  [textContent]="contactInfo"></mat-label>
+              <mat-icon matPrefix>contacts</mat-icon>
+              <input matInput [readonly]="true" [value]="booking.lodgment.contactInformation">
+            </mat-form-field>
+            <mat-form-field appearance="none">
+            <mat-label  [textContent]="phoneLabel"></mat-label>
+            <mat-icon matPrefix>phone</mat-icon>
+            <input matInput [readonly]="true" [value]="booking.lodgment.phoneNumber">
+          </mat-form-field>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </app-center-content>
+  </slot-content>
+</app-body-content>

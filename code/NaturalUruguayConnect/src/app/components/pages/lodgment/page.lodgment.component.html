@@ -1,0 +1,85 @@
+<app-body-content class="lodgment-container">
+  <slot-header>
+    <app-header-bar>
+      <h1 [textContent]="lodgmentName"></h1>
+      <mat-icon>star</mat-icon>
+      <span [textContent]="lodgmentStars"></span>
+      <a [routerLink]="[goBackUrl]">
+        <div [textContent]="goBackUrlName"></div>
+      </a>
+    </app-header-bar>
+  </slot-header>
+  <slot-content>
+    <div class="container-wrapper">
+      <mat-grid-list cols="2" [rowHeight]="imageHeight">
+        <mat-grid-tile
+          *ngFor="let image of lodgment.images; index as i;"
+          [colspan]="1" [rowspan]="i == 0 ? 2 : 1">
+          <img  mat-card-image [src]="image">
+        </mat-grid-tile>
+      </mat-grid-list>
+      <app-split-vertically>
+        <slot-left-content>
+          <div class="frame">
+            <mat-form-field appearance="none">
+              <mat-label [textContent]="description"></mat-label>
+              <mat-icon matPrefix>description</mat-icon>
+              <textarea matInput [value]="lodgment.description" [mat-autosize]="true"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="none">
+              <mat-label  [textContent]="location"></mat-label>
+              <mat-icon matPrefix>location_on</mat-icon>
+              <input matInput [value]="lodgment.address">
+            </mat-form-field>
+            <mat-form-field appearance="none">
+              <mat-label  [textContent]="contactInfo"></mat-label>
+              <mat-icon matPrefix>contacts</mat-icon>
+              <input matInput [value]="lodgment.contactInformation">
+            </mat-form-field>
+            <mat-form-field appearance="none">
+              <mat-label  [textContent]="phone"></mat-label>
+              <mat-icon matPrefix>phone</mat-icon>
+              <input matInput [value]="lodgment.phoneNumber">
+            </mat-form-field>
+            <mat-divider></mat-divider>
+            <app-reviews [reviews]="reviews" (reviewEvent)="createReview($event)" (searchEvent)="searchReviews($event)"></app-reviews>
+          </div>
+        </slot-left-content>
+        <slot-right-content>
+          <mat-card>
+            <mat-card-header>
+              <div [textContent]="priceByNight"></div>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-form-field>
+                <mat-label [textContent]="nameLabel"></mat-label>
+                <input matInput [placeholder]="namePlaceholder" [formControl]="name" required>
+                <mat-error *ngIf="name.invalid">{{getErrorMessage(name)}}</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label [textContent]="lastNameLabel"></mat-label>
+                <input matInput [placeholder]="lastNamePlaceholder" [formControl]="lastName" required>
+                <mat-error *ngIf="lastName.invalid">{{getErrorMessage(lastName)}}</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label [textContent]="emailLabel"></mat-label>
+                <input matInput [placeholder]="emailPlaceholder" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
+              </mat-form-field>
+              <app-booking-options [buttonLabel]="bookingText" (buttonEvent)="booking()"></app-booking-options>
+            </mat-card-content>
+            <div class="container-split">
+              <div [textContent]="lodgmentSummary"></div>
+              <div [textContent]="lodgment.totalPrice"></div>
+            </div>
+            <div class="container-split">
+              <div [textContent]="totalLabel"></div>
+              <div [textContent]="lodgment.totalPrice"></div>
+            </div>
+          </mat-card>
+
+        </slot-right-content>
+      </app-split-vertically>
+    </div>
+  </slot-content>
+</app-body-content>

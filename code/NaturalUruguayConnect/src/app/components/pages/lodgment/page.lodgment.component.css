@@ -1,0 +1,29 @@
+::ng-deep mat-form-field,
+::ng-deep mat-card-content > button,
+::ng-deep app-booking-options button,
+::ng-deep app-booking-options mat-form-field {
+  width: 100%;
+}
+::ng-deep .lodgment-container .body-content-container > .body-content-body {
+  height: calc(100% - 130px);
+  overflow: auto;
+}
+
+::ng-deep .right-content {
+  justify-content: center;
+}
+::ng-deep app-split-vertically .body-content-body{
+  padding-top: 20px;
+}
+mat-card {
+  height: auto;
+}
+
+mat-icon {
+  padding-right: 10px;
+}
+
+mat-divider {
+  margin-bottom: 30px;
+}
+

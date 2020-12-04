@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>NaturalUruguayGateway.ThirdPartyImport</AssemblyName>
+        <RootNamespace>NaturalUruguayGateway.ThirdPartyImport</RootNamespace>
+        <PackageId>NaturalUruguayGateway.ThirdPartyImport</PackageId>
+        <Authors>NaturalUruguayGateway.ThirdPartyImport</Authors>
+        <Company>NaturalUruguayGateway.ThirdPartyImport</Company>
+        <Product>NaturalUruguayGateway.ThirdPartyImport</Product>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\HelperInterface\HelperInterface.csproj" />
+      <ProjectReference Include="..\ImportInterface\ImportInterface.csproj" />
+      <ProjectReference Include="..\NaturalUruguayEngineInterface\NaturalUruguayEngineInterface.csproj" />
+      <ProjectReference Include="..\ThridPartyImportInterface\ThridPartyImportInterface.csproj" />
+    </ItemGroup>
+
+</Project>

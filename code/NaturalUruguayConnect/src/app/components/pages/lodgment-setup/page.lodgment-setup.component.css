@@ -1,0 +1,33 @@
+::ng-deep .lodgment-setup-container .body-content-container > .body-content-body {
+  height: calc(100% - 130px);
+  overflow: auto;
+}
+
+::ng-deep .lodgment-setup-container .dummy-helper > div {
+  padding-bottom: 0;
+}
+
+::ng-deep .lodgment-setup-container form > mat-form-field > div {
+  width: 310px
+}
+
+.lodgment-setup-container mat-form-field {
+  width: 100%;
+}
+
+.lodgment-setup-container mat-icon {
+  margin-right: 5px;
+}
+
+.lodgment-setup-container mat-divider {
+  margin: 20px 0;
+}
+
+.lodgment-setup-container .dummy-helper .mat-form-field-wrapper {
+  padding: 0;
+}
+
+.lodgment-setup-container .dummy-helper input {
+  display: none;
+}
+

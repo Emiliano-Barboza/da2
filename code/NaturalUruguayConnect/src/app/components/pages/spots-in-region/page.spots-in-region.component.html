@@ -1,0 +1,24 @@
+<app-pagination [filterByPlaceholder]="filterByPlaceholder"
+                [totalItems]="total"
+                [pageSize]="pageSize"
+                (pageEvent)="pageChangeEvent($event)"
+                (filterBy)="filterByEvent($event)"
+                class="spots-in-region-container">
+  <slot-header>
+    <app-header-bar>
+      <app-select-regions></app-select-regions>
+    </app-header-bar>
+  </slot-header>
+  <slot-content>
+    <div class="grid-container">
+      <a *ngFor="let option of filteredSpots | async" (click)="navigateToSpot(option)">
+        <mat-card>
+          <mat-card-title>{{option.name}}</mat-card-title>
+          <mat-card-content>
+            <img mat-card-image src="{{option.thumbnail}}">
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </div>
+  </slot-content>
+</app-pagination>

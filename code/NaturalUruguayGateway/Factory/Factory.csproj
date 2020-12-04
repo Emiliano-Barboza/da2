@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+        <AssemblyName>NaturalUruguayGateway.Factory</AssemblyName>
+        <RootNamespace>NaturalUruguayGateway.Factory</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+        <HintPath>..\..\..\..\..\..\..\..\..\..\usr\local\share\dotnet\packs\Microsoft.AspNetCore.App.Ref\3.1.8\ref\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AuthorizationDataAccess\AuthorizationDataAccess.csproj" />
+      <ProjectReference Include="..\AuthorizationEngineInterface\AuthorizationEngineInterface.csproj" />
+      <ProjectReference Include="..\AuthorizationEngine\AuthorizationEngine.csproj" />
+      <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+      <ProjectReference Include="..\Helper\Helper.csproj" />
+      <ProjectReference Include="..\NaturalUruguayDataAccessInterface\NaturalUruguayDataAccessInterface.csproj" />
+      <ProjectReference Include="..\NaturalUruguayDataAccess\NaturalUruguayDataAccess.csproj" />
+      <ProjectReference Include="..\NaturalUruguayEngineInterface\NaturalUruguayEngineInterface.csproj" />
+      <ProjectReference Include="..\NaturalUruguayEngine\NaturalUruguayEngine.csproj" />
+      <ProjectReference Include="..\ThirdPartyImport\ThirdPartyImport.csproj" />
+      <ProjectReference Include="..\ThridPartyImportInterface\ThridPartyImportInterface.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EntityFrameworkCoreVersion)" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsVersion)" />
+    </ItemGroup>
+
+</Project>

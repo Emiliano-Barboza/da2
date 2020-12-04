@@ -1,0 +1,13 @@
+<div class="confirm-container">
+  <h1 mat-dialog-title [textContent]="titleLabel"></h1>
+  <div mat-dialog-content>
+    <mat-form-field appearance="none">
+      <textarea matInput [value]="message" [readonly]="true" [mat-autosize]="true"></textarea>
+      <mat-icon matSuffix>error_outline</mat-icon>
+    </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions align="center">
+    <button mat-button mat-dialog-close [textContent]="closeLabel"></button>
+  </div>
+</div>

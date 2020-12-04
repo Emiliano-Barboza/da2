@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+
+        <AssemblyName>NaturalUruguayGateway.AuthorizationDataAccess.Test</AssemblyName>
+
+        <RootNamespace>NaturalUruguayGateway.AuthorizationDataAccess.Test</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoFixture" Version="$(AutoFixtureVersion)" />
+        <PackageReference Include="AutoFixture.AutoMoq" Version="$(AutoFixtureVersion)" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EntityFrameworkCoreVersion)" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="$(EntityFrameworkCoreVersion)" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackageVersion)" />
+        <PackageReference Include="MSTest.TestAdapter" Version="$(MSTestPackageVersion)" />
+        <PackageReference Include="MSTest.TestFramework" Version="$(MSTestPackageVersion)" />
+        <PackageReference Include="coverlet.collector" Version="$(CoverletCollectorVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AuthorizationDataAccessInterface\AuthorizationDataAccessInterface.csproj" />
+      <ProjectReference Include="..\AuthorizationDataAccess\AuthorizationDataAccess.csproj" />
+      <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    </ItemGroup>
+
+</Project>

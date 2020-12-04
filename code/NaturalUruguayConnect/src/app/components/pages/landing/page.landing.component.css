@@ -1,0 +1,26 @@
+::ng-deep .landing-container > .body-content-container > .body-content-body {
+  height: 100%;
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  padding: 30px 25px;
+  width: 240px;
+}
+mat-list-item {
+  align-items: center;
+  color: rgba(0,0,0,.65);
+  display: flex;
+  font-size: 16px;
+  height: 48px;
+}
+mat-list-item mat-icon {
+  margin-right: 10px;
+}
+
+.mat-list-icon {
+  color: rgba(0, 0, 0, 0.54);
+}

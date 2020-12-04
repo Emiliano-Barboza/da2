@@ -1,0 +1,4 @@
+::ng-deep .spots-in-region-container .body-content-container > .body-content-body {
+  height: calc(100% - 245px);
+  overflow: auto;
+}

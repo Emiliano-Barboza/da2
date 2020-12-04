@@ -1,0 +1,14 @@
+<app-body-content>
+  <slot-content>
+    <app-center-content>
+      <mat-form-field>
+        <mat-label  [textContent]="bookingCodeLabel"></mat-label>
+        <mat-icon matPrefix>qr_code</mat-icon>
+        <input matInput [formControl]="bookingCode" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [textContent]="searchBookingLabel" (click)="searchBooking()"></button>
+    </app-center-content>
+  </slot-content>
+</app-body-content>
+
+

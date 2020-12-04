@@ -1,0 +1,42 @@
+<h1 mat-dialog-title [textContent]="titleLabel"></h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="none">
+    <mat-label [textContent]="fullNameLabel"></mat-label>
+    <mat-icon matPrefix>contacts</mat-icon>
+    <input matInput [readonly]="true" [value]="booking.name + ' ' +booking.lastName">
+  </mat-form-field>
+  <mat-form-field appearance="none">
+    <mat-label  [textContent]="emailLabel"></mat-label>
+    <mat-icon matPrefix>email</mat-icon>
+    <input matInput [readonly]="true" [value]="booking.email">
+  </mat-form-field>
+  <mat-form-field appearance="none">
+    <mat-label  [textContent]="priceLabel"></mat-label>
+    <mat-icon matPrefix>attach_money</mat-icon>
+    <input matInput [readonly]="true" [value]="booking.price">
+  </mat-form-field>
+  <mat-form-field appearance="none">
+    <mat-label  [textContent]="confirmationCodeLabel"></mat-label>
+    <mat-icon matPrefix>qr_code</mat-icon>
+    <input matInput [readonly]="true" [value]="booking.confirmationCode">
+  </mat-form-field>
+  <mat-form-field appearance="none">
+    <mat-label  [textContent]="statusLabel"></mat-label>
+    <mat-icon matPrefix>sync</mat-icon>
+    <input matInput [readonly]="true" [value]="booking.statusDescription">
+  </mat-form-field>
+  <mat-form-field appearance="none">
+    <mat-label  [textContent]="contactInfo"></mat-label>
+    <mat-icon matPrefix>contacts</mat-icon>
+    <input matInput [readonly]="true" [value]="booking.lodgment.contactInformation">
+  </mat-form-field>
+  <mat-form-field appearance="none">
+    <mat-label  [textContent]="phoneLabel"></mat-label>
+    <mat-icon matPrefix>phone</mat-icon>
+    <input matInput [readonly]="true" [value]="booking.lodgment.phoneNumber">
+  </mat-form-field>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close [textContent]="closeLabel"></button>
+</div>

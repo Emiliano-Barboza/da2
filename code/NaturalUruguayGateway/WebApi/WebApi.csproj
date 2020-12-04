@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+        <AssemblyName>NaturalUruguayGateway.NaturalUruguayGateway.WebApi</AssemblyName>
+        <RootNamespace>NaturalUruguayGateway.NaturalUruguayGateway.WebApi</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AuthorizationEngineInterface\AuthorizationEngineInterface.csproj" />
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+      <ProjectReference Include="..\Factory\Factory.csproj" />
+      <ProjectReference Include="..\NaturalUruguayEngineInterface\NaturalUruguayEngineInterface.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="$(ProblemDetailsVersion)" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(MvcNewtonsoftJsonVersion)" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="$(MvcVersioningVersion)" />
+      <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    </ItemGroup>
+
+
+</Project>

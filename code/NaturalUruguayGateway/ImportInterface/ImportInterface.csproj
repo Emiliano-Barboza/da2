@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>NaturalUruguayGateway.ImportInterface</AssemblyName>
+        <RootNamespace>NaturalUruguayGateway.ImportInterface</RootNamespace>
+        <PackageId>NaturalUruguayGateway.ImportInterface</PackageId>
+        <Authors>NaturalUruguayGateway.ImportInterface</Authors>
+        <Company>NaturalUruguayGateway.ImportInterface</Company>
+        <Product>NaturalUruguayGateway.ImportInterface</Product>
+    </PropertyGroup>
+
+</Project>

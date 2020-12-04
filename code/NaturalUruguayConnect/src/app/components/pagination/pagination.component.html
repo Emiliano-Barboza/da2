@@ -1,0 +1,19 @@
+<app-body-content class="pagination-container">
+  <slot-header>
+    <ng-content select="slot-header"></ng-content>
+    <mat-form-field>
+      <mat-label [textContent]="filterLabel"></mat-label>
+      <input matInput (keyup)="filterByEvent($event)" [placeholder]="filterByPlaceholder" #input>
+    </mat-form-field>
+  </slot-header>
+  <slot-content>
+    <ng-content select="slot-content"></ng-content>
+  </slot-content>
+  <slot-footer>
+    <mat-paginator [length]="totalItems"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageChangeEvent($event)">
+    </mat-paginator>
+  </slot-footer>
+</app-body-content>

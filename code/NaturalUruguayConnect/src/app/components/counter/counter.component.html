@@ -1,0 +1,15 @@
+<div class="container container-counter">
+  <div>
+    <input matInput [readonly]="true" [placeholder]="placeholderText" (click)="$event.stopPropagation();">
+    <mat-hint [textContent]="hintText"></mat-hint>
+  </div>
+  <div class="container">
+    <button mat-icon-button color="transparent" (click)="remove($event)" [disabled]="isRemoveDisabled">
+      <mat-icon>remove_circle_outline</mat-icon>
+    </button>
+    <div class="counter-display">{{counter}}</div>
+    <button mat-icon-button color="transparent" (click)="add($event)">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </div>
+</div>

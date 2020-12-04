@@ -1,0 +1,7 @@
+.confirm-container  {
+  min-width: 320px;
+}
+
+.confirm-container mat-form-field {
+  width: 100%;
+}
